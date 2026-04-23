@@ -11,7 +11,7 @@ use App\Http\Controllers\HomeController;
 //     return view('welcome');
 // });
 
-Route::get('/',[NoteController::class,'index'])->name('notes.index');
+Route::get('/home',[HomeController::class,'index'])->name('home.index');
 Route::get('/create',[NoteController::class,'create'])->name('notes.create');
 Route::post('/store',[NoteController::class,'store'])->name('notes.store');
 
@@ -48,7 +48,7 @@ Route::get("/post",[PostController::class,'index']);
 
 
 // Route group cho HomeController
-Route::controller(HomeController::class)->group(function(){
-    Route::get('/home','index')->name('home.index');
-    Route::get('/home/about','about')->name('home.about');
-});
+// Route::controller(HomeController::class)->group(function(){
+//     Route::get('/home','index')->name('home.index');
+//     Route::get('/home/about','about')->name('home.about');
+// });
