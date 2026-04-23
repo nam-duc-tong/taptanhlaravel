@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
-<h1>Notes</h1>
+<h1>Notes {{now()}}</h1>
 @endsection

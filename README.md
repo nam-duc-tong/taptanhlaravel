@@ -56,3 +56,29 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+<!-- middleware  trong laravel-->
+1.  tạo 1 middleware 
+-   php artisan make:middleware CheckAccessTime
+2.  Xử lý logic trong middleware
+-   public function handle($request, Closure $next)
+    {
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $start = Carbon::createFromTimeString('08:00:00');
+        $end = Carbon::createFromTimeString('17:00:00');
+        if ($now->between($start, $end)) {
+    } else {
+            return redirect()->route('home')->with('error', 'Chào mừng bạn đến với trang chủ');
+        }
+        return $next($request);
+    }
+3.  Đăng ký middleware
+-   Đăng ký Global Middleware
+-   Đăng ký Middleware cho route
+-   Đăng ký Middleware cho controller 
+-   Đăng ký Middleware Alias
+4. Tích hợp Middleware vào Route/Controller
+-   Route
+-   Controller
+-   Middleware Alias

@@ -1,8 +1,11 @@
 <?php
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckAccessTime;
+use App\Http\Controllers\HomeController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -31,6 +34,21 @@ Route::fallback(function(){
 });
 
 Route::get("/users",[UserController::class,'index']);
+// Route::get("/users",[UserController::class,'index'])->middleware('access.time');
+
+// Route::get("/users",[UserController::class,'index'])->middleware(CheckAccessTime::class);
 
 Route::get("/dichvu",[ProductController::class,'sanpham']);
 
+Route::get("/post",[PostController::class,'index']);
+
+// Route::fallback(function(){
+//     return view('404');
+// });
+
+
+// Route group cho HomeController
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/home','index')->name('home.index');
+    Route::get('/home/about','about')->name('home.about');
+});
